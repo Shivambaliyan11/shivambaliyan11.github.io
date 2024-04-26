@@ -1,18 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>
-        body{
-            height: 300px;
-            width: 250px;
-        }
-    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
-
+</head>   
 <body>
-<script src="https://tags3-qa.performoo.com/d3aWaHiF/au/gfEhxtenK/tag.js"></script>
+    <button type="button" id="playButton">Watch Video</button>  // Create a button to initiate the video loading
+    <script type="text/javascript" src="https://cdn.applixir.com/applixir.sdk3.0m.js"></script>   // Applixir SDK    
+    <div id="applixir_vanishing_div" hidden>
+        <iframe id="applixir_parent"></iframe>
+ </div>
+
+    <script type="application/javascript">
+        function adStatusCallback(status) {                  // Status Callback Method
+            console.log('Ad Status: ' + status);
+        }
+
+        var options = {                                     // Video Ad Options
+             zoneId: 2050,
+             accountId: 1234,                               // Required field for RMS                                                                               
+             siteId: 1234,                                 // Required field for RMS
+             adStatusCb: adStatusCallback,
+             userId: currentUserID(UUID4),                      // UUID4 recommended
+             custom: currentUserReward(),
+          };  
+        playBtn = document.getElementById("playButton");                                                      
+        playBtn.onclick = function () {                     
+                     invokeApplixirVideoUnit(options);     // Invoke Video ad
+       }
+    </script>
 </body>
 </html>
