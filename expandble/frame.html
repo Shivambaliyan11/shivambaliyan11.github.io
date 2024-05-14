@@ -1,34 +1,49 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>   
-<body>
-    <button type="button" id="playButton">Watch Video</button>  // Create a button to initiate the video loading
-    <script type="text/javascript" src="https://cdn.applixir.com/applixir.sdk3.0m.js"></script>   // Applixir SDK    
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="https://cdn.applixir.com/applixir.sdk3.0m.js"></script>
+</head>
+
+<body style="background-color: #f0ecd0">
+
+    <button type="button" id="playButton1">Run Test</button>
+
     <div id="applixir_vanishing_div" hidden>
         <iframe id="applixir_parent"></iframe>
- </div>
+    </div>
+
+    <div style="position: absolute;top: 10px;color: #112d57;left: 45%;">Test Server:
+        <span id="pts">Prod</span>
+    </div>
 
     <script type="application/javascript">
-        function adStatusCallback(status) {                  // Status Callback Method
+        function adStatusCallback(status) {
             console.log('Ad Status: ' + status);
         }
+        var playBtn1 = document.getElementById("playButton1");
+        playBtn1.onclick = function () {
+            var options = {
+                zoneId: 6218,
+                accountId: 2813,
+                gameId: 8487,
+                adStatusCb: adStatusCallback,
+                // userId: "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6a",
+                custom: "138f4384-0ddb-41dd-b95d-a51203466eb0-e2ea723e-2b23-4fd6-90aa-d4fd1dd74b7e",
+                verbosity: 5,
+                debug: true,
+                vSize: "1024x768",
+                vSizeM: 'max',
+                btnDelay: 24,
+                maxAdt: 31,
+                endMsg: 0,
+            };
+            invokeApplixirVideoUnit(options);
+        }
 
-        var options = {                                     // Video Ad Options
-             zoneId: 2050,
-             accountId: 1234,                               // Required field for RMS                                                                               
-             siteId: 1234,                                 // Required field for RMS
-             adStatusCb: adStatusCallback,
-             userId: currentUserID(UUID4),                      // UUID4 recommended
-             custom: currentUserReward(),
-          };  
-        playBtn = document.getElementById("playButton");                                                      
-        playBtn.onclick = function () {                     
-                     invokeApplixirVideoUnit(options);     // Invoke Video ad
-       }
-    </script>
-</body>
+        </script>
+    </body>
 </html>
